@@ -1,19 +1,11 @@
 const path = require('path')
 const puppeteer = require('puppeteer')
-const { record } = require('./puppeteer-recorder')
+const { record } = require('./record')
 
 const url = 'https://www.jonasluebbers.com'
 
-const recordOptions = {
-    fps: 60,
-    frames: 100,
-    output: 'output.mp4',
-    format: 'mp4',
-    logEachFrame: true,
-    pipeOutput: true,
-    prepare: () => {},
-    render: () => {}
-}
+const fps = 60
+const frames = 60
 
 const puppeteerOptions = {
     args: ['--no-sandbox']
@@ -32,7 +24,7 @@ async function start() {
     try {
         await page.setViewport(viewportOptions)
         await page.goto(url)
-        await record(Object.assign(recordOptions, { browser, page }))
+        await record(page, fps, frames)
         await browser.close()
     }
     catch (error) {

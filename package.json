@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "render": "ffmpeg -r 60 -i output/img-%03d.jpg output.mp4"
   },
   "author": "",
   "license": "MIT",
